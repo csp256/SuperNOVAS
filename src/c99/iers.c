@@ -57,6 +57,40 @@
 #  define IERS_LEAP_SERVER        "hpiers.obspm.fr"     ///< IERS leap-seconds.list server name
 #endif
 
+/**
+ * Alternative URL for `leap-seconds.list`.
+ *
+ * @sa novas_set_eop_url(), EOP_LEAP_LIST
+ */
+#define NOVAS_EOP_ALT_LEAP_URL    "https://data.iana.org/time-zones/data/leap-seconds.list"
+
+/**
+ * Alternative URL for the IERS rapid dailyseries Earth Orientation Parameter data series
+ * from 1973, and including predictions for up to to a year from the current date.
+ *
+ * @sa novas_set_eop_url(), EOP_RAPID_IAU2000
+ */
+#define NOVAS_EOP_ALT_RAPID_URL   "https://maia.usno.navy.mil/ser7/finals2000A.daily.extended"
+
+/**
+ * Alternative URL for the IERS C04 daily series Earth Orientation Parameter data series
+ * from 1962 to the current date.
+ *
+ * @sa novas_set_eop_url(), EOP_C04_IAU2000_0UTC
+ */
+#define NOVAS_EOP_ALT_C04_URL     "https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now"
+
+/**
+ * Alternative URL for the IERS C01 series Earth Orientation Parameter data series
+ * from 1846 to the current date, at 0.1 year interval to 1899, and 0.05 year interval
+ * after.
+ *
+ * @sa novas_set_eop_url(), EOP_C01_IAU2000
+ */
+#define NOVAS_EOP_ALT_C01_URL     "https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now"
+
+
+
 /// \cond PRIVATE
 #  define LEAP_FILENAME               "leap-seconds.list"
 #  define LEAP_LIST_MAX_LEN           32768
@@ -140,6 +174,7 @@ static const char *default_urls[NOVAS_NUM_EOP_SERIES] = {
         IERS_LATEST_URL_PREFIX "EOP_20u24_C04_one_file_1962-now.txt",
         IERS_LATEST_URL_PREFIX "EOP_C01_IAU2000_1846-now.txt"
 };
+
 
 static const int default_itrf_years[NOVAS_NUM_EOP_SERIES] = { -1, 2020, 2020, 2020 };
 
@@ -888,6 +923,7 @@ int novas_lookup_leap(time_t t) {
  * @author Attila Kovacs
  *
  * @sa novas_get_eop_url(), novas_fetch_eop(), novas_set_leap_list(), novas_get_eop_itrf_year()
+ * @sa NOVAS_EOP_ALT_LEAP_URL, NOVAS_EOP_ALT_RAPID_URL, NOVAS_EOP_ALT_C04_URL, NOVAS_EOP_ALT_C01_URL
  */
 int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *url) {
   static const char *fn = "novas_set_eop_url";
