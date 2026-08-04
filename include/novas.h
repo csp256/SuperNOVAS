@@ -15,7 +15,7 @@
  *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
- * @version 1.7.1
+ * @version 1.7.2
  */
 
 #ifndef _NOVAS_
@@ -88,7 +88,7 @@
 #define SUPERNOVAS_PATCHLEVEL     2
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
-#define SUPERNOVAS_RELEASE_STRING "-rc1"
+#define SUPERNOVAS_RELEASE_STRING ""
 
 /// \cond PRIVATE
 

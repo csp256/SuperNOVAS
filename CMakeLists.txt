@@ -21,7 +21,7 @@ cmake_minimum_required(VERSION 3.24...4.3)
 
 # Project definition
 project(supernovas
-    VERSION 1.7.1
+    VERSION 1.7.2
     DESCRIPTION "SuperNOVAS C/C++ astrometry library"
     HOMEPAGE_URL "https://sigmyne.github.io/SuperNOVAS/"
     LANGUAGES C
