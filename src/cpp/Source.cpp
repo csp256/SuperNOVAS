@@ -17,6 +17,12 @@
 
 namespace supernovas {
 
+static void use_weather(const Weather& weather, on_surface *site) {
+  site->temperature = weather.temperature().celsius();
+  site->pressure = weather.pressure().mbar();
+  site->humidity = weather.humidity() / Unit::percent;
+}
+
 /**
  * Returns a pointer to the NOVAS C `novas_object` data structure that stores data internally.
  *
@@ -238,7 +244,9 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
  * @sa sets_below(), transits_in()
  */
 Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  Time t(novas_rises_above(el.deg(), &_object, frame._novas_frame(), ref), frame.eop());
+  novas_frame f = *frame._novas_frame();
+  use_weather(weather, &f.observer.on_surf);
+  Time t(novas_rises_above(el.deg(), &_object, &f, ref), frame.eop());
   if(!t.is_valid())
     novas_trace_invalid("Source::rises_above()");
   return t;
@@ -282,7 +290,9 @@ Time Source::transits_in(const Frame &frame) const {
  * @sa rises_above(), transits_in()
  */
 Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  Time t(novas_sets_below(el.deg(), &_object, frame._novas_frame(), ref), frame.eop());
+  novas_frame f = *frame._novas_frame();
+  use_weather(weather, &f.observer.on_surf);
+  Time t(novas_sets_below(el.deg(), &_object, &f, ref), frame.eop());
   if(!t.is_valid())
     novas_trace_invalid("Source::sets_below()");
   return t;
@@ -394,14 +404,10 @@ HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref
   }
 
   novas_frame f = *frame._novas_frame();
-  on_surface *s = &f.observer.on_surf;
-
-  s->temperature = weather.temperature().celsius();
-  s->pressure = weather.pressure().mbar();
-  s->humidity = weather.humidity() / Unit::percent;
+  use_weather(weather, &f.observer.on_surf);
 
   novas_track track = {};
-  novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track);
+  novas_hor_track(_novas_object(), &f, ref, &track);
 
   return HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
 }
