@@ -19,6 +19,7 @@
 #  define novas_lock            pthread_mutex_lock
 #  define novas_unlock          pthread_mutex_unlock
 #  define novas_destroy_lock    pthread_mutex_destroy
+#  define NOVAS_LOCK_INITIALIZER PTHREAD_MUTEX_INITIALIZER
 #  define THREAD_SAFE           1
 
 typedef pthread_mutex_t       lock_type;
@@ -42,6 +43,7 @@ typedef mtx_t                   lock_type;
 #  define novas_lock            AcquireSRWLockExclusive
 #  define novas_unlock          ReleaseSRWLockExclusive
 #  define novas_destroy_lock(x)                           // no-op: SRWLOCK does not require explicit destruction
+#  define NOVAS_LOCK_INITIALIZER SRWLOCK_INIT
 #  define THREAD_SAFE           1
 
 typedef SRWLOCK                 lock_type;
@@ -51,6 +53,7 @@ typedef SRWLOCK                 lock_type;
 #  define novas_lock(x)
 #  define novas_unlock(x)
 #  define novas_destroy_lock(x)
+#  define NOVAS_LOCK_INITIALIZER 0
 #  define THREAD_SAFE           0
 
 typedef int                     lock_type;

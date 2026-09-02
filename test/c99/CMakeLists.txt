@@ -14,6 +14,11 @@ set(TEST_PROGRAMS
     test-errors
 )
 
+if(NOT WITHOUT_CURL AND UNIX)
+    list(APPEND TEST_PROGRAMS test-eop-concurrency)
+    find_package(Threads REQUIRED)
+endif()
+
 if(ENABLE_CALCEPH)
     list(APPEND TEST_PROGRAMS test-calceph)
 endif()
@@ -44,6 +49,10 @@ foreach(TEST ${TEST_PROGRAMS})
         
         # Link against the supernovas library
         target_link_libraries(${TEST} PRIVATE core)
+
+        if(${TEST} STREQUAL "test-eop-concurrency")
+            target_link_libraries(${TEST} PRIVATE Threads::Threads)
+        endif()
         
         target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/test/c99/resources")
         
