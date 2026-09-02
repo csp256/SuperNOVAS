@@ -255,7 +255,7 @@ jobs:
           distro: ${{ matrix.distro }}
           install: |
             apt-get update -q -y
-            apt-get install -q -y make gcc g++ gfortran libcurl4-openssl-dev libcurl4-openssl-dev
+            apt-get install -q -y make gcc g++ gfortran libc6-dev libcurl4-openssl-dev libcurl4-openssl-dev
           run: |
             export ENABLE_CPP=1
             export OFFLINE=1
