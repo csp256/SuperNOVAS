@@ -14,6 +14,10 @@ set(TEST_PROGRAMS
     test-errors
 )
 
+if(NOT WITHOUT_CURL)
+    list(APPEND TEST_PROGRAMS test-eop-parser)
+endif()
+
 if(ENABLE_CALCEPH)
     list(APPEND TEST_PROGRAMS test-calceph)
 endif()

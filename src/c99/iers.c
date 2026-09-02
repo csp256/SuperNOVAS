@@ -597,8 +597,19 @@ static int checkout_eop_file_async(iers_data_file *restrict file, long timeout_m
   prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), 0, head.capacity - 1, &head, timeout_millis), 0);
 
   // Skip empty and commented lines.
-  for(; *next == '#' || *next == '\n'; next++)
-    while(*(++next) && *next != '\n');  // parse to end of the line.
+  while((size_t) (next - buf) < head.size && (*next == '#' || *next == '\n')) {
+    if(*next == '#') {
+      while((size_t) (next - buf) < head.size && *next != '\n') {
+        next++;
+      }
+    }
+    else {
+      next++;
+    }
+  }
+
+  if(head.size <= (size_t) (next - buf) || head.size - (size_t) (next - buf) < (size_t) file->line_len)
+    return novas_error(-1, EBADMSG, fn, "No complete EOP record in downloaded data");
 
   prop_error(fn, eop_parse_line(file, 0, next, &eop), 0);
 
