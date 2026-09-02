@@ -35,6 +35,7 @@ int main() {
 
   Site site = Site(45.0 * Unit::deg, 30.0 * Unit::deg, 1500.0 * Unit::m);
   Weather c = site.average_weather();
+  if(!test.check("is_valid(site)", c.is_valid())) n++;
 
   const Weather& d = Weather::standard();
   if(!test.equals("standard temperature() ==", d.temperature().celsius(), 10.0, 1e-15)) n++;
@@ -47,7 +48,7 @@ int main() {
 
   if(!test.equals("temperature(site)", c.temperature().celsius(), s.temperature, 1e-13)) n++;
   if(!test.equals("pressure(site)", c.pressure().mbar(), s.pressure, 1e-15 * Unit::atm)) n++;
-  if(!test.equals("humidity(site)", c.humidity(), s.humidity, 1e-15)) n++;
+  if(!test.equals("humidity(site)", c.humidity(), s.humidity * Unit::percent, 1e-15)) n++;
 
   std::cout << "Weather.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

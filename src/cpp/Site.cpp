@@ -343,7 +343,7 @@ Position Site::xyz() const {
 Weather Site::average_weather() const {
   on_surface s = _site;
   novas_set_default_weather(&s);
-  return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
+  return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity * Unit::percent);
 }
 
 /**
