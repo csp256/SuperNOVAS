@@ -17,7 +17,7 @@ int main() {
 
   int n = 0;
 
-  Planet x = Planet((enum novas_planet) -1);
+  Planet x = Planet(NOVAS_INVALID_PLANET);
   if(!test.check("(invalid)", !x.is_valid())) n++;
   if(!test.equals("type(invalid)", x.type(), NOVAS_PLANET)) n++;
   if(!test.equals("novas_id(invalid)", x.novas_id(), -1)) n++;

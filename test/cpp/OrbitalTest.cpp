@@ -17,8 +17,8 @@ int main() {
 
   int n = 0;
 
-  if(!test.check("ecliptic(invalid planet)", !OrbitalSystem::ecliptic(Planet((enum novas_planet) -1)).is_valid())) n++;
-  if(!test.check("equatorial(invalid planet)", !OrbitalSystem::equatorial(Planet((enum novas_planet) -1)).is_valid())) n++;
+  if(!test.check("ecliptic(invalid planet)", !OrbitalSystem::ecliptic(Planet(NOVAS_INVALID_PLANET)).is_valid())) n++;
+  if(!test.check("equatorial(invalid planet)", !OrbitalSystem::equatorial(Planet(NOVAS_INVALID_PLANET)).is_valid())) n++;
 
   OrbitalSystem s = OrbitalSystem::ecliptic(Planet::sun());
   if(!test.check("is_valid()", s.is_valid())) n++;
@@ -66,15 +66,15 @@ int main() {
   novas_orbital_system *ns = (novas_orbital_system *) s._novas_orbital_system();
   if(!test.check("from_novas_orbital_system()::is_valid()", OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
-  ns->center = (novas_planet) -1;
+  ns->center = NOVAS_INVALID_PLANET;
   if(!test.check("from_novas_orbital_system(invalid center)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->center = NOVAS_JUPITER;
-  ns->plane = (novas_reference_plane) -1;
+  ns->plane = NOVAS_INVALID_REFERENCE_PLANE;
   if(!test.check("from_novas_orbital_system(invalid plane)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->plane = NOVAS_EQUATORIAL_PLANE;
-  ns->type = (novas_reference_system) -1;
+  ns->type = NOVAS_INVALID_REFERENCE_SYSTEM;
   if(!test.check("from_novas_orbital_system(invalid type)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->type = NOVAS_ICRS;
@@ -89,7 +89,7 @@ int main() {
   if(!test.check("from_novas_orbital_system(OK)", OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
 
-  OrbitalSystem xs = (OrbitalSystem::equatorial(Planet((novas_planet) -1)));
+  OrbitalSystem xs = (OrbitalSystem::equatorial(Planet(NOVAS_INVALID_PLANET)));
   if(!test.equals("to_string(equatorial)", xs.to_string(), "Equatorial OrbitalSystem around  inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
 
   // ------------------------------------------------------------------------
@@ -245,8 +245,8 @@ int main() {
   if(!test.check("position(time invalid)", !o.position(Time::undefined()).is_valid())) n++;
   if(!test.check("velocity(time invalid)", !o.velocity(Time::undefined()).is_valid())) n++;
 
-  if(!test.check("position(acc invalid)", !o.position(Time::hip(), (enum novas_accuracy) -1).is_valid())) n++;
-  if(!test.check("velocity(acc invalid)", !o.velocity(Time::hip(), (enum novas_accuracy) -1).is_valid())) n++;
+  if(!test.check("position(acc invalid)", !o.position(Time::hip(), NOVAS_INVALID_ACCURACY).is_valid())) n++;
+  if(!test.check("velocity(acc invalid)", !o.velocity(Time::hip(), NOVAS_INVALID_ACCURACY).is_valid())) n++;
 
   const novas_orbital *no0 = o._novas_orbital();
   novas_orbital no = *no0;

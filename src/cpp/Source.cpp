@@ -631,7 +631,7 @@ double SolarSystemSource::solar_power(const Time& time) const {
  */
 Planet::Planet() : SolarSystemSource() {
   _object.type = NOVAS_PLANET;
-  _object.number = (enum novas_planet) -1;
+  _object.number = NOVAS_INVALID_PLANET;
 }
 
 /**

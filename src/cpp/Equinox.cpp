@@ -268,7 +268,7 @@ enum novas_equator_type Equinox::equator_type() const {
     case NOVAS_CIRS:
       return NOVAS_TRUE_EQUATOR;
     default:
-      return (enum novas_equator_type) -1;
+      return NOVAS_INVALID_EQUATOR;
   }
 }
 

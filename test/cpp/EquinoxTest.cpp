@@ -27,8 +27,7 @@ int main() {
   if(!test.equals("undefined().system()", x.system_type(), -1)) n++;
 
   if(!test.check("is_valid(jd = NAN)", !Equinox::from_system_type(NOVAS_MOD, NAN).is_valid())) n++;
-  if(!test.check("is_valid(system = -1)", !Equinox::from_system_type((novas_reference_system) -1, NOVAS_JD_J2000).is_valid())) n++;
-  if(!test.check("is_valid(system = hi)", !Equinox::from_system_type((novas_reference_system) NOVAS_REFERENCE_SYSTEMS, NOVAS_JD_J2000).is_valid())) n++;
+  if(!test.check("is_valid(system = -1)", !Equinox::from_system_type(NOVAS_INVALID_REFERENCE_SYSTEM, NOVAS_JD_J2000).is_valid())) n++;
   if(!test.check("is_valid(system = TIRS)", !Equinox::from_system_type(NOVAS_TIRS, NOVAS_JD_J2000).is_valid())) n++;
   if(!test.check("is_valid(system = ITRS)", !Equinox::from_system_type(NOVAS_ITRS, NOVAS_JD_J2000).is_valid())) n++;
 

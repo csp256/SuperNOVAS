@@ -370,7 +370,7 @@ private:
                         ///< matches the system
 
   /// Instantiates an undefined equinox
-  Equinox() : _name("invalid"), _system((enum novas_reference_system) -1), _jd(NAN) {}
+  Equinox() : _name("invalid"), _system(NOVAS_INVALID_REFERENCE_SYSTEM), _jd(NAN) {}
 
   Equinox(const std::string& name, double jd_tdb);
 
@@ -1076,7 +1076,7 @@ private:
   double _jd;
 
   /// Instantiates undefined Ecliptic coordinates
-  Ecliptic() : Spherical(), _equator((enum novas_equator_type) -1), _jd(NAN) {}
+  Ecliptic() : Spherical(), _equator(NOVAS_INVALID_EQUATOR), _jd(NAN) {}
 
   void validate();
 
@@ -2650,7 +2650,7 @@ private:
   enum novas_reference_system _system;  ///< stored coordinate reference system type
 
   /// Instantiates undefined geometric positions
-  Geometric() : _frame(Frame::undefined()), _pos(Position::undefined()), _vel(Velocity::undefined()), _system((enum novas_reference_system) -1) {}
+  Geometric() : _frame(Frame::undefined()), _pos(Position::undefined()), _vel(Velocity::undefined()), _system(NOVAS_INVALID_REFERENCE_SYSTEM) {}
 
   Geometric to_system(const novas_frame *f, enum novas_reference_system system) const;
 
@@ -2775,7 +2775,7 @@ class AstrometricPosition : public Position {
     Position _obs_pos;
     enum novas_reference_system _ref_sys;
 
-    AstrometricPosition() : Position(), _emit_time(Time::undefined()), _obs_pos(Position::undefined()), _ref_sys((enum novas_reference_system) -1) {}
+    AstrometricPosition() : Position(), _emit_time(Time::undefined()), _obs_pos(Position::undefined()), _ref_sys(NOVAS_INVALID_REFERENCE_SYSTEM) {}
 
     AstrometricPosition(const Position& equ_pos, const Time& time, const Position& ref_pos, enum novas_reference_system system);
 

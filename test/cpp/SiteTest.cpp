@@ -23,7 +23,7 @@ int main() {
   if(!test.check("invalid (alt = NAN)", !Site(Angle(-2.0), Angle(1.0), Coordinate(NAN)).is_valid())) n++;
   if(!test.check("invalid (alt < -10km)", !Site(Angle(-2.0), Angle(1.0), Coordinate(-10.1 * Unit::km)).is_valid())) n++;
   if(!test.check("invalid (alt > 100km)", !Site(Angle(-2.0), Angle(1.0), Coordinate(100.1 * Unit::km)).is_valid())) n++;
-  if(!test.check("invalid (ellipsoid = -1)", !Site(Angle(-2.0), Angle(1.0), Coordinate(60.0), (enum novas_reference_ellipsoid) -1).is_valid())) n++;
+  if(!test.check("invalid (ellipsoid = -1)", !Site(Angle(-2.0), Angle(1.0), Coordinate(60.0), NOVAS_INVALID_REFERENCE_ELLIPSOID).is_valid())) n++;
 
   Site x = Site::undefined();
   if(!test.check("invalid", !x.is_valid())) n++;

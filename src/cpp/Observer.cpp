@@ -17,7 +17,7 @@
 namespace supernovas {
 
 
-Observer::Observer() : Observer((enum novas_observer_place) -1, Site::undefined(), Position::undefined(), Velocity::undefined()) {}
+Observer::Observer() : Observer(NOVAS_INVALID_OBSERVER_PLACE, Site::undefined(), Position::undefined(), Velocity::undefined()) {}
 
 Observer::Observer(enum novas_observer_place type, const Site& site, const Position& pos,
         const Velocity& vel) {

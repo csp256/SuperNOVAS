@@ -31,7 +31,7 @@ int main() {
   if(!test.check("referenced_to_ssb(frame invalid)", !x.referenced_to_ssb().is_valid())) n++;
 
   if(!test.check("is_valid(obs pos invalid)", !AstrometricPosition(Position::origin(), xo.reduced_accuracy_frame_at(Time::j2000())).is_valid())) n++;
-  if(!test.check("is_valid(system invalid)", !AstrometricPosition(Position::origin(), frame, (enum novas_reference_system) -1).is_valid())) n++;
+  if(!test.check("is_valid(system invalid)", !AstrometricPosition(Position::origin(), frame, NOVAS_INVALID_REFERENCE_SYSTEM).is_valid())) n++;
 
   Position p = Position(-1.123456789 * Unit::au, 2.123456789 * Unit::au, -3.123456789 * Unit::au);
   AstrometricPosition a(p, frame, NOVAS_MOD);

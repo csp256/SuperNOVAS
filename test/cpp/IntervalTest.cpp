@@ -28,7 +28,7 @@ int main() {
   if(!test.check("is_valid(zero)", Interval::zero().is_valid())) n++;
   if(!test.equals("zero()", Interval::zero().minutes(), 0.0)) n++;
 
-  if(!test.check("is_valid(timescale -1)", !Interval(1.0, (enum novas_timescale) -1).is_valid())) n++;
+  if(!test.check("is_valid(timescale -1)", !Interval(1.0, NOVAS_INVALID_TIMESCALE).is_valid())) n++;
 
   Interval a(1.0 * Unit::min);
   if(!test.check("is_valid(1 min)", a.is_valid())) n++;
@@ -47,7 +47,7 @@ int main() {
   if(!test.equals("operator - (tt)", (a - a).seconds(), 0.0, 1e-16)) n++;
   if(!test.check("operator+(NAN)", !(a + x).is_valid())) n++;
   if(!test.check("operator-(NAN)", !(a - x).is_valid())) n++;
-  if(!test.check("to_timescale(invalid)", !x.to_timescale((enum novas_timescale) -1).is_valid())) n++;
+  if(!test.check("to_timescale(invalid)", !x.to_timescale(NOVAS_INVALID_TIMESCALE).is_valid())) n++;
 
   if(!test.equals("inv()", a.inv().minutes(), -1.0)) n++;
 

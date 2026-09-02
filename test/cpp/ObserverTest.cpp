@@ -107,10 +107,10 @@ int main() {
 
   if(!test.check("to_interferometric(invalid)", !gdx.to_interferometric(app).is_valid())) n++;
   if(!test.check("to_interferometric(phase_center invalid)", !g1.to_interferometric(Apparent::undefined()).is_valid())) n++;
-  if(!test.check("to_interferometric(system invalid)", !g1.to_interferometric(app, (enum novas_reference_system) -1).is_valid())) n++;
+  if(!test.check("to_interferometric(system invalid)", !g1.to_interferometric(app, NOVAS_INVALID_REFERENCE_SYSTEM).is_valid())) n++;
 
   Apparent xapp = app;
-  ((novas_frame *) xapp.frame()._novas_frame())->accuracy = (enum novas_accuracy) -1;
+  ((novas_frame *) xapp.frame()._novas_frame())->accuracy = NOVAS_INVALID_ACCURACY;
   if(!test.check("to_interferometric(accuracy invalid)", !gdx.to_interferometric(xapp).is_valid())) n++;
 
   const observer *o = g1._novas_observer();

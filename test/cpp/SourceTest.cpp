@@ -118,7 +118,7 @@ int main() {
   if(!test.equals("apparent().ra()", app.equatorial().ra().hours(), tod.ra, 1e-13)) n++;
   if(!test.equals("apparent().dec()", app.equatorial().dec().deg(), tod.dec, 1e-12)) n++;
   if(!test.equals("apparent().radial_velocity()", app.radial_velocity().km_per_s(), tod.rv, 1e-13)) n++;
-  if(!test.check("apparent(invalid)", !Planet((enum novas_planet) -1).apparent_in(gc).is_valid())) n++;
+  if(!test.check("apparent(invalid)", !Planet(NOVAS_INVALID_PLANET).apparent_in(gc).is_valid())) n++;
 
   double p[3] = {0.0}, v[3] = {0.0};
 
@@ -128,7 +128,7 @@ int main() {
   if(!test.check("geometric(TOD)", geom.is_valid())) n++;
   if(!test.check("geometric(TOD).position()", geom.position() == Position(p, Unit::AU))) n++;
   if(!test.check("geometric(TOD).velocity()", geom.velocity() == Velocity(v, Unit::AU_per_day))) n++;
-  if(!test.check("geometric(invalid)", !Planet((enum novas_planet) -1).geometric_in(frame).is_valid())) n++;
+  if(!test.check("geometric(invalid)", !Planet(NOVAS_INVALID_PLANET).geometric_in(frame).is_valid())) n++;
 
   if(!test.check("equatorial_track(frame invalid)", !c.equatorial_track(Frame::undefined(), Interval(Unit::hour)).is_valid())) n++;
 

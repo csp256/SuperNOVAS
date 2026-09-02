@@ -40,7 +40,7 @@ int main() {
   if(!test.check("invalid (pos invalid)", !Geometric(frame, Position::undefined(), Velocity::stationary()).is_valid())) n++;
   if(!test.check("invalid (vel invalid)", !Geometric(frame, Position::origin(), Velocity::undefined()).is_valid())) n++;
   if(!test.check("invalid (frame invalid)", !Geometric(Frame::undefined(), Position::origin(), Velocity::stationary()).is_valid())) n++;
-  if(!test.check("invalid (system -1)", !Geometric(frame, Position::origin(), Velocity::stationary(), (enum novas_reference_system) -1).is_valid())) n++;
+  if(!test.check("invalid (system -1)", !Geometric(frame, Position::origin(), Velocity::stationary(), NOVAS_INVALID_REFERENCE_SYSTEM).is_valid())) n++;
 
   Position pos(1.0 * Unit::pc, 2.0 * Unit::pc, 3.0 * Unit::pc);
   Velocity vel(-1.1 * Unit::km_per_s, -2.2 * Unit::km_per_s, -3.3 * Unit::km_per_s);

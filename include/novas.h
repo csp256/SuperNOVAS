@@ -618,6 +618,7 @@ enum novas_object_type {
  * @c_source
  */
 enum novas_planet {
+  NOVAS_INVALID_PLANET = -1, ///< Invalid or undefined planet value.
   NOVAS_SSB = 0,          ///< Solar-system barycenter position ID
   NOVAS_MERCURY,          ///< Major planet number for Mercury in NOVAS.
   NOVAS_VENUS,            ///< Major planet number for Venus in NOVAS.
@@ -826,6 +827,8 @@ enum novas_id_type {
  * @sa observer, NOVAS_OBSERVER_PLACES
  */
 enum novas_observer_place {
+  NOVAS_INVALID_OBSERVER_PLACE = -1, ///< Invalid or undefined observer location type.
+
   /// Calculate coordinates as if observing from the geocenter for location and Earth rotation
   /// independent coordinates.
   /// @sa make_observer_at_geocenter()
@@ -875,6 +878,8 @@ enum novas_observer_place {
  * @ingroup equatorial
  */
 enum novas_reference_system {
+  NOVAS_INVALID_REFERENCE_SYSTEM = -1, ///< Invalid or undefined reference system.
+
   /// Geocentric Celestial Reference system. Essentially the same as ICRS but includes
   /// aberration and gravitational deflection for an observer around Earth.
   NOVAS_GCRS = 0,
@@ -932,6 +937,7 @@ enum novas_reference_system {
  * @c_nonequatorial
  */
 enum novas_equator_type {
+  NOVAS_INVALID_EQUATOR = -1, ///< Invalid or undefined equator type.
   NOVAS_MEAN_EQUATOR = 0, ///< Mean celestial equator of date without nutation (pre IAU 2006 system).
   NOVAS_TRUE_EQUATOR,     ///< True celestial equator of date.
   NOVAS_GCRS_EQUATOR      ///< International / Geocentric Celestial Reference System (ICRS / GCRS) equator.
@@ -980,6 +986,8 @@ enum novas_dynamical_type {
  * @ingroup frame
  */
 enum novas_accuracy {
+  NOVAS_INVALID_ACCURACY = -1, ///< Invalid or undefined accuracy.
+
   /// Use full precision calculations to micro-arcsecond accuracy. It can be computationally
   /// intensive when using the dynamical equator.
   NOVAS_FULL_ACCURACY = 0,
@@ -1244,6 +1252,7 @@ enum novas_nutation_direction {
  * @c_source
  */
 enum novas_reference_plane {
+  NOVAS_INVALID_REFERENCE_PLANE = -1, ///< Invalid or undefined reference plane.
   NOVAS_ECLIPTIC_PLANE = 0,     ///< the plane of the ecliptic
   NOVAS_EQUATORIAL_PLANE,       ///< the plane of the equator
 };
@@ -1789,6 +1798,7 @@ typedef struct novas_ra_of_cio {
  * @ingroup time
  */
 enum novas_timescale {
+  NOVAS_INVALID_TIMESCALE = -1, ///< Invalid or undefined time scale.
   NOVAS_TCB = 0,    ///< Barycentric Coordinate Time (TCB)
   NOVAS_TDB,        ///< Barycentric Dynamical Time (TDB)
   NOVAS_TCG,        ///< Geocentric Coordinate Time (TCG)
@@ -2068,6 +2078,7 @@ typedef struct novas_track {
  * @c_time
  */
 enum novas_date_format {
+  NOVAS_INVALID_DATE_FORMAT = -1, ///< Invalid or undefined date format.
   NOVAS_YMD = 0,          ///< year, then month, then day.
   NOVAS_DMY,              ///< day, then month, then year
   NOVAS_MDY               ///< month, then day, then year
@@ -2115,6 +2126,7 @@ enum novas_separator_type {
  * @c_observer
  */
 enum novas_reference_ellipsoid {
+  NOVAS_INVALID_REFERENCE_ELLIPSOID = -1, ///< Invalid or undefined reference ellipsoid.
   NOVAS_GRS80_ELLIPSOID = 0,  ///< GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).
   NOVAS_WGS84_ELLIPSOID,      ///< WGS84 reference ellipsoid, used for GPS navigation.
   NOVAS_IERS_1989_ELLIPSOID,  ///< IERS (1989) reference ellipsoid, formerly used by the IERS conventions (but not for ITRS, which uses the GRS80 model).
