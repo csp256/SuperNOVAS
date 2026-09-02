@@ -4,10 +4,10 @@
 //
 // @author: Attila Kovacs
 
-static const int elp_n_lat = 339;
+static const int elp_n_lat = 339; // @suppress("Unused variable declaration in file scope")
 
 // @formatter:off
-static const elp_main_term elp_lat[339] = { //
+static const elp_main_term elp_lat[339] = { // @suppress("Unused variable declaration in file scope")
   {  18461.24038,  0,  1,  0,  0 }, //
   {   1010.16716,  0,  1,  1,  0 }, //
   {    999.69366,  0, -1,  1,  0 }, //

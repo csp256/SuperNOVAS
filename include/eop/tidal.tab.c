@@ -16,7 +16,7 @@
  *
  * @since 1.5
  */
-static const novas_eop_terms polar_tidal_terms[69] = { //
+static const novas_eop_terms polar_tidal_terms[69] = { // @suppress("Unused variable declaration in file scope")
         //                                         xp               yp
         //                                    sin     cos      sin      cos
         { {   1,  -1,   0,  -2,  -2,  -2 },    0.0,    0.9,   -0.9,   -0.1 }, //
@@ -100,7 +100,7 @@ static const novas_eop_terms polar_tidal_terms[69] = { //
  *
  * @since 1.5
  */
-static const novas_eop_terms dut1_tidal_terms[69] = { //
+static const novas_eop_terms dut1_tidal_terms[69] = { // @suppress("Unused variable declaration in file scope")
         //                                         UT1             LOD
         //                                    sin     cos      sin     cos
         { {   1,  -1,   0,  -2,  -2,  -2 },   0.40,  -0.08,  -0.40,  -2.10 }, //

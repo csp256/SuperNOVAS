@@ -10,7 +10,7 @@
  * @version IERS Conventions v1.3.0
  */
 
-static const nutation_terms A0[1320] = { //
+static const nutation_terms A0[1320] = { // @suppress("Unused variable declaration in file scope")
         { -1720642418,      333860, {   0,   0,   0,   0,   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  4,  5 }, //
         {  -131709122,     -136960, {   0,   0,   2,  -2,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //
         {   -22764181,       27960, {   0,   0,   2,   0,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //
@@ -1333,7 +1333,7 @@ static const nutation_terms A0[1320] = { //
         {         -10,           0, {   0,   0,   0,   0,   0,   0,   0,   1,   0,   1,  -2,   0,   0,   0 },  7, 11 }  //
 };
 
-static const nutation_terms A1[38] = { //
+static const nutation_terms A1[38] = { // @suppress("Unused variable declaration in file scope")
         {    -1741882,         289, {   0,   0,   0,   0,   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  4,  5 }, //
         {      -36371,        -150, {   0,   1,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  1,  2 }, //
         {      -16384,         120, {   0,   0,   2,  -2,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //

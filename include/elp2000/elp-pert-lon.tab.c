@@ -1110,6 +1110,6 @@ static const elp_pert_term elp_plon2[5] = { //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_plon[] = { elp_plon0, elp_plon1, elp_plon2 };
+static const elp_pert_term *elp_plon[] = { elp_plon0, elp_plon1, elp_plon2 }; // @suppress("Unused variable declaration in file scope")
 
-static int elp_n_plon[] = { 1015, 76, 5, 0 };
+static int elp_n_plon[] = { 1015, 76, 5, 0 }; // @suppress("Unused variable declaration in file scope")

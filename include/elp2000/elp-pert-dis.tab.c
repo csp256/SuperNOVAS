@@ -822,6 +822,6 @@ static const elp_pert_term elp_pdis2[2] = { //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_pdis[] = { elp_pdis0, elp_pdis1, elp_pdis2 };
+static const elp_pert_term *elp_pdis[] = { elp_pdis0, elp_pdis1, elp_pdis2 }; // @suppress("Unused variable declaration in file scope")
 
-static int elp_n_pdis[] = { 753, 53, 2, 0 };
+static int elp_n_pdis[] = { 753, 53, 2, 0 }; // @suppress("Unused variable declaration in file scope")

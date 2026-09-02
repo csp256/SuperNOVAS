@@ -8,7 +8,7 @@
 
   // Luni-Solar argument multipliers:
   // L     L'    F     D     Om
-  static const int8_t nals_t[323][5] = { //
+  static const int8_t nals_t[323][5] = { // @suppress("Unused variable declaration in file scope")
           { 0, 0, 0, 0, 1 }, //
           { 0, 0, 2, -2, 2 }, //
           { 0, 0, 2, 0, 2 }, //
@@ -339,7 +339,7 @@
 
   // Each row of coefficients in 'cls_t' belongs with the corresponding
   // row of fundamental-argument multipliers in 'nals_t'.
-  static const int32_t cls_t[323][6] = { //
+  static const int32_t cls_t[323][6] = { // @suppress("Unused variable declaration in file scope")
           { -172064161, -174666, 33386, 92052331, 9086, 15377 }, //
           { -13170906, -1675, -13696, 5730336, -3015, -4587 }, //
           { -2276413, -234, 2796, 978459, -485, 1374 }, //
@@ -667,7 +667,7 @@
 
   // Planetary argument multipliers:
   // L   L'  F   D   Om  Me  Ve  E  Ma  Ju  Sa  Ur  Ne  pre
-  static const int8_t napl_t[165][14] = { //
+  static const int8_t napl_t[165][14] = { // @suppress("Unused variable declaration in file scope")
           { 0, 0, 0, 0, 0, 0, 0, 8, -16, 4, 5, 0, 0, 0 }, //
           { 0, 0, 0, 0, 0, 0, 0, -8, 16, -4, -5, 0, 0, 2 }, //
           { 0, 0, 0, 0, 0, 0, 0, 8, -16, 4, 5, 0, 0, 2 }, //
@@ -840,7 +840,7 @@
 
   // Each row of coefficients in 'cpl_t' belongs with the corresponding
   // row of fundamental-argument multipliers in 'napl_t'.
-  static const int16_t cpl_t[165][4] = { //
+  static const int16_t cpl_t[165][4] = { // @suppress("Unused variable declaration in file scope")
           { 1440, 0, 0, 0 }, //
           { 56, -117, -42, -40 }, //
           { 125, -43, 0, -54 }, //

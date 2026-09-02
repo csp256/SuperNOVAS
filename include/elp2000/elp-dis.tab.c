@@ -4,10 +4,10 @@
 //
 // @author: Attila Kovacs
 
-static const int elp_n_dis = 313;
+static const int elp_n_dis = 313; // @suppress("Unused variable declaration in file scope")
 
 // @formatter:off
-static const elp_main_term elp_dis[313] = { //
+static const elp_main_term elp_dis[313] = { // @suppress("Unused variable declaration in file scope")
   { 385000.52906,  0,  0,  0,  0 }, //
   { -20905.35494,  0,  0,  1,  0 }, //
   {  -3699.11090,  2,  0, -1,  0 }, //

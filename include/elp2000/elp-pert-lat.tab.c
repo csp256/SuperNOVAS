@@ -492,7 +492,7 @@ static const elp_pert_term elp_plat1[35] = { //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_plat[] = { elp_plat0, elp_plat1 };
+static const elp_pert_term *elp_plat[] = { elp_plat0, elp_plat1 }; // @suppress("Unused variable declaration in file scope")
 
-static int elp_n_plat[] = { 446, 35, 0 };
+static int elp_n_plat[] = { 446, 35, 0 }; // @suppress("Unused variable declaration in file scope")
 
