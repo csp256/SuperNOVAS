@@ -60,6 +60,8 @@ int main() {
   Frame gf = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
   Frame gfx = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::undefined());
   Frame gc = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
+  Weather low_pressure(0.0, 700.0 * Unit::mbar, 50.0 * Unit::percent);
+  Weather high_pressure(0.0, 1100.0 * Unit::mbar, 50.0 * Unit::percent);
 
   if(!test.check("observer.is_geodetic()", Observer::on_earth(site, eop).is_geodetic())) n++;
   if(!test.check("frame.is_valid()", frame.is_valid())) n++;
@@ -79,6 +81,9 @@ int main() {
   if(!test.equals("rises_above(refract)",
           c.rises_above(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, site.average_weather()).jd(),
           novas_rises_above(20.0, c._novas_object(), frame._novas_frame(), novas_standard_refraction), 1e-7)) n++;
+  if(!test.check("rises_above(weather)",
+          c.rises_above(Angle(20.0 * Unit::deg), frame, novas_optical_refraction, low_pressure).jd() !=
+          c.rises_above(Angle(20.0 * Unit::deg), frame, novas_optical_refraction, high_pressure).jd())) n++;
   if(!test.check("rises_above(gc)", !c.rises_above(Angle(20.0 * Unit::deg), gc).is_valid())) n++;
   if(!test.check("rises_above(invalid geo)", !c.rises_above(Angle(20.0 * Unit::deg), gfx).is_valid())) n++;
 
@@ -91,6 +96,9 @@ int main() {
   if(!test.equals("sets_below(refract)",
           c.sets_below(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, site.average_weather()).jd(),
           novas_sets_below(20.0, c._novas_object(), frame._novas_frame(), novas_standard_refraction), 1e-7)) n++;
+  if(!test.check("sets_below(weather)",
+          c.sets_below(Angle(20.0 * Unit::deg), frame, novas_optical_refraction, low_pressure).jd() !=
+          c.sets_below(Angle(20.0 * Unit::deg), frame, novas_optical_refraction, high_pressure).jd())) n++;
   if(!test.check("sets_below(gc)", !c.sets_below(Angle(20.0 * Unit::deg), gc).is_valid())) n++;
   if(!test.check("sets_below(invalid geo)", !c.sets_below(Angle(20.0 * Unit::deg), gfx).is_valid())) n++;
 
@@ -150,6 +158,10 @@ int main() {
 
   HorizontalTrack ht = c.horizontal_track(frame, NULL);
   if(!test.check("horizontal_track()", ht.is_valid())) n++;
+  CatalogSource refracted(CatalogEntry("Refracted", Equatorial("14:00:00", "12:34:56.789")));
+  if(!test.check("horizontal_track(weather)",
+          refracted.horizontal_track(frame, novas_optical_refraction, low_pressure).latitude_evolution().value() !=
+          refracted.horizontal_track(frame, novas_optical_refraction, high_pressure).latitude_evolution().value())) n++;
 
   novas_hor_track(c._novas_object(), frame._novas_frame(), NULL, &tr);
   if(!test.equals("horizontal_track().lon(0)", ht.longitude_evolution().value(), tr.pos.lon * Unit::deg, 1e-12)) n++;
