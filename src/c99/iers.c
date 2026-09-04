@@ -118,11 +118,14 @@ typedef struct iers_leap_entry {
 
 static iers_leap_entry *leaps;      ///< Leap seconds list
 static time_t leap_expiration;      ///< UNIX time at which leap seconds list expires.
-#ifdef NOVAS_LOCK_INITIALIZER
-static lock_type leap_mutex = NOVAS_LOCK_INITIALIZER; ///< Mutex for leap seconds data.
+
+#if defined(NOVAS_LOCK_INITIALIZER)
+static lock_type leap_mutex = NOVAS_LOCK_INITIALIZER;   ///< Mutex for leap seconds data.
+#elif __STDC_VERSION__ >= 201112L
+static lock_type leap_mutex;                            ///< Mutex for leap seconds data.
+static once_flag leap_mutex_once = ONCE_FLAG_INIT;      ///< One-time mutex initialization state.
 #else
-static lock_type leap_mutex;                      ///< Mutex for leap seconds data.
-static once_flag leap_mutex_once = ONCE_FLAG_INIT; ///< One-time mutex initialization state.
+#  error "Oops. No thread safe mutex initialization available."
 #endif
 
 #endif // WITH_LIBC
@@ -219,11 +222,13 @@ static iers_data_file c01 = { NULL, EOP_C01_IAU2000,
 };
 
 static int auto_fetch_eop = 1;    ///< Enable fetching EOP from IERS as needed by default
+
 #ifdef NOVAS_LOCK_INITIALIZER
-static lock_type eop_mutex = NOVAS_LOCK_INITIALIZER; ///< Mutex for EOP data other than leap data.
-#else
-static lock_type eop_mutex;                      ///< Mutex for EOP data other than leap data.
-static once_flag eop_mutex_once = ONCE_FLAG_INIT; ///< One-time mutex initialization state.
+static lock_type eop_mutex = NOVAS_LOCK_INITIALIZER;    ///< Mutex for EOP data other than leap data.
+#elif __STDC_VERSION__ >= 201112L
+static lock_type eop_mutex;                             ///< Mutex for EOP data other than leap data.
+static once_flag eop_mutex_once = ONCE_FLAG_INIT;       ///< One-time mutex initialization state.
+#  error "Oops. No thread safe mutex initialization available."
 #endif
 
 /// \endcond
@@ -233,14 +238,20 @@ static once_flag eop_mutex_once = ONCE_FLAG_INIT; ///< One-time mutex initializa
 // ===========================================================================
 #ifndef WITHOUT_LIBC
 
-#ifndef NOVAS_LOCK_INITIALIZER
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
 static void init_leap_mutex() {
   novas_init_lock(&leap_mutex);
 }
+
+#ifndef NOVAS_LOCK_INITIALIZER
+static void init_eop_mutex() {
+  novas_init_lock(&eop_mutex);
+}
+#endif
 #endif
 
 static void lock_leap() {
-#ifndef NOVAS_LOCK_INITIALIZER
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
   call_once(&leap_mutex_once, init_leap_mutex);
 #endif
   novas_lock(&leap_mutex);
@@ -399,14 +410,10 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
 // ---------------------------------------------------------------------------
 #ifndef WITHOUT_CURL
 
-#ifndef NOVAS_LOCK_INITIALIZER
-static void init_eop_mutex() {
-  novas_init_lock(&eop_mutex);
-}
-#endif
+
 
 static void lock_eop() {
-#ifndef NOVAS_LOCK_INITIALIZER
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
   call_once(&eop_mutex_once, init_eop_mutex);
 #endif
   novas_lock(&eop_mutex);
