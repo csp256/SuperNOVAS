@@ -171,18 +171,18 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   if(h < 0.0)
     h += 24.0;
 
-  k = jd + 68569;
-  n = 4 * k / 146097;
+  k = jd + 68569L;
+  n = 4 * k / 146097L;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (tjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    k -= (146097 * n + 3) / 4;
+    k -= (146097L * n + 3) / 4;
   else
-    k -= (146100 * n + 3) / 4;
+    k -= (146100L * n + 3) / 4;
 
-  m = 4000 * (k + 1) / 1461001;
+  m = 4000 * (k + 1) / 1461001L;
 
   k += 31 - 1461 * m / 4;
 
